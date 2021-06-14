@@ -15,8 +15,13 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    //return view('testview');
-    return redirect()->route('login');
+    return view('testview');
+    //return redirect()->route('login');
 });
 
 Route::get('login', LoginController::class)->name('login');
+
+Route::get('/contratos/nuevo', function () {
+    return view('contracts/index');
+    //return redirect()->route('login');
+})->name('contratos.nuevo');

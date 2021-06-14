@@ -16,8 +16,8 @@ class CreateOfficesTable extends Migration
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
 
-            $table->string('office', 45);
-            $table->tinyInteger('execution_days')->default('2');
+            $table->string('office', 55);
+            $table->tinyInteger('execution_days')->default(2);
         });
     }
 

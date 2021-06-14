@@ -1,3 +1,3 @@
-<div>
-    Soy el footer | 2021
-</div>
+<footer class="absolute bottom-0 left-0 text-center">
+    <p>Unasam | 2021</p>
+</footer>

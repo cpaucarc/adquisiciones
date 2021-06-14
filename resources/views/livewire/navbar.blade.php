@@ -10,7 +10,7 @@
                                  alt="Escudo de la Unasam">
 
                         </div>
-                        {{--                        options items here--}}
+                        {{--options items here--}}
                         @foreach( $names as $name)
                             {{$name}};
                         @endforeach

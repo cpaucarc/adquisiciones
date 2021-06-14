@@ -16,8 +16,8 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->string('link', 175);
-            $table->string('name', 75);
+            $table->string('link');
+            $table->string('name');
             $table->dateTime('created_at')->useCurrent();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('contract_id');
