@@ -16,12 +16,12 @@ class CreateLogDocumentStatusesTable extends Migration
         Schema::create('log_document_statuses', function (Blueprint $table) {
             $table->id();
 
-            $table->dateTime('update_at')->useCurrent();
             $table->unsignedBigInteger('document_status_id');
             $table->unsignedBigInteger('document_id');
 
             $table->foreign('document_status_id')->references('id')->on('document_statuses');
             $table->foreign('document_id')->references('id')->on('documents');
+            $table->timestamps();
         });
     }
 

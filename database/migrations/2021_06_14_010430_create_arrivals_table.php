@@ -24,6 +24,7 @@ class CreateArrivalsTable extends Migration
 
             $table->foreign('document_id')->references('id')->on('documents');
             $table->foreign('attention_status_id')->references('id')->on('attention_statuses');
+            $table->timestamps();
         });
     }
 

@@ -16,12 +16,12 @@ class CreateLogContractStatusesTable extends Migration
         Schema::create('log_contract_statuses', function (Blueprint $table) {
             $table->id();
 
-            $table->dateTime('update_at')->useCurrent();
             $table->unsignedBigInteger('contract_status_id');
             $table->unsignedBigInteger('contract_id');
 
             $table->foreign('contract_status_id')->references('id')->on('contract_statuses');
             $table->foreign('contract_id')->references('id')->on('contracts');
+            $table->timestamps();
         });
     }
 

@@ -10,32 +10,44 @@
     <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     @livewireStyles
 </head>
 <body class="bg-gray-100">
+
 <div>
     @livewire('navbar')
 </div>
 
 <div class="container mx-auto w-8/12 pt-8">
-    <div>
-        <a href="{{route('contratos.crear')}}">
-            Crear nuevo
-        </a>
-    </div>
+    {{--    <x-alerts.danger>--}}
+    {{--        <x-slot name="title">--}}
+    {{--            Server Error--}}
+    {{--        </x-slot>--}}
+    {{--        <strong>Whoops!</strong> Something went wrong!--}}
+    {{--    </x-alerts.danger>--}}
+
+    {{--    <x-alerts.success>--}}
+    {{--        <x-slot name="title">--}}
+    {{--            Exito--}}
+    {{--        </x-slot>--}}
+    {{--        <strong>Whoops!</strong> Something went wrong!--}}
+    {{--    </x-alerts.success>--}}
+
+    {{--    <x-alerts.warning>--}}
+    {{--        <x-slot name="title">--}}
+    {{--            Cuidado--}}
+    {{--        </x-slot>--}}
+    {{--        <strong>Whoops!</strong> Something went wrong!--}}
+    {{--    </x-alerts.warning>--}}
 
     <div>
-        <p>
-            Colocar la tabla de contratos aqui
-        </p>
+        @livewire('create-contract')
+        {{--        @livewire('create-office');--}}
     </div>
 
-</div>
-
-
-<div>
-    @livewire('footer')
 </div>
 
 
@@ -60,8 +72,11 @@
 
     // Select the file input and use create() to turn it into a pond
     FilePond.create(
-        document.querySelector("input[name='contract_document']")
+        document.querySelector("input[name='document']")
     );
+
+
+
 </script>
 
 </html>

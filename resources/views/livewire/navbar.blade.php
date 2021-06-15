@@ -10,10 +10,7 @@
                                  alt="Escudo de la Unasam">
 
                         </div>
-                        {{--options items here--}}
-                        @foreach( $names as $name)
-                            {{$name}};
-                        @endforeach
+
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
@@ -37,6 +34,7 @@
                                         <span class="sr-only">Open user menu</span>
                                         <span
                                             class="h-8 w-8 rounded-full text-lg text-center align-middle font-bold text-indigo-900 border-2 border-indigo-900">
+{{--                                            {{ substr($name, 0, 1)  }}--}}
                                             T
                                         </span>
                                     </button>

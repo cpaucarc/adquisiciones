@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContractController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -21,7 +22,10 @@ Route::get('/', function () {
 
 Route::get('login', LoginController::class)->name('login');
 
-Route::get('/contratos/nuevo', function () {
-    return view('contracts/index');
-    //return redirect()->route('login');
-})->name('contratos.nuevo');
+/* Contratos */
+Route::get('contratos', [ContractController::class, 'index'])->name('contratos');
+Route::get('contratos/crear', [ContractController::class, 'create'])->name('contratos.crear');
+
+//Route::post('/contratos/nuevo', function () {
+//    return request();
+//})->name('contratos.nuevo');

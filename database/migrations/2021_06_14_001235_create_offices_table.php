@@ -18,6 +18,7 @@ class CreateOfficesTable extends Migration
 
             $table->string('office', 55);
             $table->tinyInteger('execution_days')->default(2);
+            $table->timestamps();
         });
     }
 

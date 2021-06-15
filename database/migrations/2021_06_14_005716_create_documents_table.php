@@ -18,12 +18,12 @@ class CreateDocumentsTable extends Migration
 
             $table->string('link');
             $table->string('name');
-            $table->dateTime('created_at')->useCurrent();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('contract_id');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('contract_id')->references('id')->on('contracts');
+            $table->timestamps();
         });
     }
 

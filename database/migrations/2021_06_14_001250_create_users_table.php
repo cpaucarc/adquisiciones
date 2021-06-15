@@ -18,13 +18,13 @@ class CreateUsersTable extends Migration
 
             $table->string('username', 45);
             $table->string('password');
-            $table->timestamp('created_at')->useCurrent();
             $table->rememberToken();
 
             $table->unsignedBigInteger('person_id');
             $table->unsignedBigInteger('office_id');
             $table->foreign('person_id')->references('id')->on('people');
             $table->foreign('office_id')->references('id')->on('offices');
+            $table->timestamps();
         });
     }
 

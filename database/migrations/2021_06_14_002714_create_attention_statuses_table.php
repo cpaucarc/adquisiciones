@@ -17,6 +17,8 @@ class CreateAttentionStatusesTable extends Migration
             $table->id();
 
             $table->string('name', 45);
+            $table->tinyInteger('percent');
+            $table->timestamps();
         });
     }
 
