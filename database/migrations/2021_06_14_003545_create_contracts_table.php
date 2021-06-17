@@ -17,14 +17,16 @@ class CreateContractsTable extends Migration
             $table->id();
 
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->default(0.0);
             $table->date('due_date_at')->nullable();
-            $table->time('due_time_at')->useCurrent();
+            $table->time('due_time_at');
             $table->timestamp('accepted_at')->nullable();
             $table->unsignedBigInteger('line_id');
+            $table->unsignedBigInteger('contract_status_id');
 
             $table->foreign('line_id')->references('id')->on('lines');
+            $table->foreign('contract_status_id')->references('id')->on('contract_statuses');
             $table->timestamps();
         });
     }

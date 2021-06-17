@@ -10,7 +10,7 @@ class Contract extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'price', 'due_date_at', 'due_time_at', 'line_id',
+        'name', 'description', 'price', 'due_date_at', 'due_time_at', 'line_id', 'contract_status_id',
     ];
 
     protected $hidden = [

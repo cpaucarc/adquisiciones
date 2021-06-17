@@ -14,7 +14,7 @@ class Document extends Model
     ];
 
     protected $hidden = [
-        'accepted_at', 'created_at', 'updated_at',
+        'created_at', 'updated_at',
     ];
 
 }

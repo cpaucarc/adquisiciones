@@ -54,8 +54,8 @@ return [
     |
     */
 
-    'asset_url' => null,        //activar para usar comandos de consola
-//    'asset_url' => url('/'),    //activar para usar livewire
+//    'asset_url' => null,        //activar para usar comandos de consola
+    'asset_url' => url('/'),    //activar para usar livewire
     /*
     |--------------------------------------------------------------------------
     | Livewire Endpoint Middleware Group

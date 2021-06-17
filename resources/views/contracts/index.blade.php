@@ -1,34 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
-          rel="stylesheet">
+    <x-heads.head>
+        Contratos
+    </x-heads.head>
 
     @livewireStyles
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 h-screen">
 <div>
     @livewire('navbar')
 </div>
 
-<div class="container mx-auto w-8/12 pt-8">
+<div class="container mx-auto w-10/12 pt-10">
     <div>
-        <a href="{{route('contratos.crear')}}">
-            Crear nuevo
+        <a href="{{route('contratos.crear')}}" class="btn-primary">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span class="ml-2">
+                Crear nuevo contrato
+            </span>
         </a>
     </div>
 
-    <div>
-        <p>
-            Colocar la tabla de contratos aqui
-        </p>
+    <div class="mt-8">
+        @livewire('contract.list-contracts')
     </div>
 
 </div>
@@ -42,26 +41,5 @@
 </body>
 
 @livewireScripts
-<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
-<script
-    src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
-<script
-    src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
-<script>
-    FilePond.registerPlugin(
-        FilePondPluginFileEncode,
-        FilePondPluginFileValidateSize,
-        FilePondPluginImageExifOrientation,
-        FilePondPluginImagePreview
-    );
-
-    // Select the file input and use create() to turn it into a pond
-    FilePond.create(
-        document.querySelector("input[name='contract_document']")
-    );
-</script>
 
 </html>

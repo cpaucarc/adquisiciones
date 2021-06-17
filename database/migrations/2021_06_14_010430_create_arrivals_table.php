@@ -16,7 +16,7 @@ class CreateArrivalsTable extends Migration
         Schema::create('arrivals', function (Blueprint $table) {
             $table->id();
 
-            $table->timestamp('arrival_date');
+            $table->timestamp('arrival_date')->useCurrent();
             $table->unsignedBigInteger('origin');
             $table->unsignedBigInteger('destination');
             $table->unsignedBigInteger('document_id');

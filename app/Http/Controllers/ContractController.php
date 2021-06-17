@@ -20,7 +20,11 @@ class ContractController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-        return view('contracts.show')
-            ->with(compact('contract'));
+        if ($contract) {
+            return view('contracts.show')
+                ->with(compact('contract'));
+        } else {
+            return redirect()->route('contratos');
+        }
     }
 }

@@ -15,11 +15,13 @@ class LineSeeder extends Seeder
     public function run()
     {
         $line = new Line();
-        $line->name = "Orden de Compra (O/C)";
+        $line->name = "Orden de Compra";
+        $line->abrev = "O/C";
         $line->save();
 
         $line2 = new Line();
-        $line2->name = "Orden de Servicio (O/S)";
+        $line2->name = "Orden de Servicio";
+        $line2->abrev = "O/S";
         $line2->save();
     }
 }

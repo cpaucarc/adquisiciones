@@ -17,6 +17,7 @@ class CreateContractStatusesTable extends Migration
             $table->id();
 
             $table->string('name', 45);
+            $table->string('color', 10)->default('indigo');
             $table->timestamps();
         });
     }

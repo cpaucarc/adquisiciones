@@ -16,15 +16,18 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('testview');
+    return view('home');
     //return redirect()->route('login');
-});
+})->name('inicio');
 
 Route::get('login', LoginController::class)->name('login');
 
 /* Contratos */
 Route::get('contratos', [ContractController::class, 'index'])->name('contratos');
 Route::get('contratos/crear', [ContractController::class, 'create'])->name('contratos.crear');
+Route::get('contratos/{id}', [ContractController::class, 'show'])->name('contratos.mostrar');
+
+
 
 //Route::post('/contratos/nuevo', function () {
 //    return request();

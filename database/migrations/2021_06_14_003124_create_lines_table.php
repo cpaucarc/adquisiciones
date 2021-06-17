@@ -17,6 +17,7 @@ class CreateLinesTable extends Migration
             $table->id();
 
             $table->string('name', 45);
+            $table->string('abrev', 5);
             $table->timestamps();
         });
     }
