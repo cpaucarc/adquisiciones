@@ -20,6 +20,7 @@ class CreatePeopleTable extends Migration
             $table->string('lastname', 45);
             $table->string('email', 45)->unique()->nullable();
             $table->string('phone', 9)->nullable();
+            $table->timestamps();
         });
     }
 

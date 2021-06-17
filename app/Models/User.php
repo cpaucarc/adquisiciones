@@ -38,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function person()
+    {
+        return $this->hasOne('App\Models\Person', 'id', 'person_id');
+    }
+
+    public function office()
+    {
+        return $this->hasOne('App\Models\Office', 'id', 'office_id');
+    }
 }

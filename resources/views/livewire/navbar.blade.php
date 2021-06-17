@@ -1,145 +1,88 @@
-<div>
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <div>
-        <nav class="bg-gray-200 shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-8" src="{{url('/images/unasam.png')}}"
-                                 alt="Escudo de la Unasam">
+<nav x-data="{open: false}" class="bg-gray-100 border-b-2 border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a class="flex items-center" href="{{ route('inicio')  }}">
+                <div class="flex-shrink-0">
+                    <img class="h-10" src="{{url('/images/unasam_escudo.svg')}}"
+                         alt="Escudo de la Unasam">
 
+                </div>
+                <div class="ml-1">
+                    <p class="font-bold text-xl text-gray-700">
+                        Unasam
+                    </p>
+                </div>
+
+            </a>
+            <div>
+                <div class="ml-4 flex items-center md:ml-6">
+                    <!-- Profile dropdown -->
+                    <div class="ml-3 relative mt-1">
+                        <div class="cursor-pointer text-gray-700" x-on:click="{open = !open}">
+                            <svg class="h-10 w-10 " viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                      clip-rule="evenodd"/>
+                            </svg>
                         </div>
-                        {{--                        options items here--}}
-                        @foreach( $names as $name)
-                            {{$name}};
-                        @endforeach
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-4 flex items-center md:ml-6">
-                            <button
-                                class="p-1 rounded-full text-gray-800 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                                <span class="sr-only">View notifications</span>
-                                <!-- Heroicon name: outline/bell -->
-                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                                </svg>
-                            </button>
 
-                            <!-- Profile dropdown -->
-                            <div class="ml-3 relative">
-                                <div>
-                                    <button type="button"
-                                            class="max-w-xs bg-indigo-50 rounded-full flex items-center text-sm focus:outline-none hover:bg-indigo-100"
-                                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                        <span class="sr-only">Open user menu</span>
-                                        <span
-                                            class="h-8 w-8 rounded-full text-lg text-center align-middle font-bold text-indigo-900 border-2 border-indigo-900">
-                                            T
-                                        </span>
-                                    </button>
-                                </div>
+                        <!--
+                          Dropdown menu, show/hide based on menu state.
 
-                                <!--
-                                  Dropdown menu, show/hide based on menu state.
+                          Entering: "transition ease-out duration-100"
+                            From: "transform opacity-0 scale-95"
+                            To: "transform opacity-100 scale-100"
+                          Leaving: "transition ease-in duration-75"
+                            From: "transform opacity-100 scale-100"
+                            To: "transform opacity-0 scale-95"
+                        -->
+                        <div x-show="open" x-on:click.away="{open = false}"
+                             class="divide-y divide-gray-100 origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                             tabindex="-1">
 
-                                  Entering: "transition ease-out duration-100"
-                                    From: "transform opacity-0 scale-95"
-                                    To: "transform opacity-100 scale-100"
-                                  Leaving: "transition ease-in duration-75"
-                                    From: "transform opacity-100 scale-100"
-                                    To: "transform opacity-0 scale-95"
-                                -->
-                                <div
-                                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                                    tabindex="-1">
-                                    <!-- Active: "bg-gray-100", Not Active: "" -->
-                                    <a href="#"
-                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                                       role="menuitem"
-                                       tabindex="-1" id="user-menu-item-0">Mi perfil</a>
+                            <div class="py-1" role="none">
+                                <span class="block px-4 py-2 text-sm text-gray-700 tracking-wide font-bold"
+                                      role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    Paucar Colonia Frank
+                                </span>
+                                <span class="block pl-4 pr-0 py-0 text-xs text-gray-400"
+                                      role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    Dirección de Abastecimiento y Servicios Auxiliares
+                                </span>
+                            </div>
 
-                                    <a href="#"
-                                       class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
-                                       role="menuitem"
-                                       tabindex="-1" id="user-menu-item-2">Cerrar Sesión</a>
+                            <div class="py-1" role="none">
+                                <a href="#"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                                   role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    <div class="flex items-center">
+                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Mi perfil
+                                    </div>
+                                </a>
 
-                                </div>
+                                <a href="#"
+                                   class="block px-4 py-2 text-sm text-red-500 hover:bg-red-50"
+                                   role="menuitem"
+                                   tabindex="-1" id="user-menu-item-2">
+                                    <div class="flex items-center">
+                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                        </svg>
+                                        Cerrar Sesión
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="-mr-2 flex md:hidden">
-                        <!-- Mobile menu button -->
-                        <button type="button"
-                                class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                                aria-controls="mobile-menu" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <!--
-                              Heroicon name: outline/menu
-
-                              Menu open: "hidden", Menu closed: "block"
-                            -->
-                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M4 6h16M4 12h16M4 18h16"/>
-                            </svg>
-                            <!--
-                              Heroicon name: outline/x
-
-                              Menu open: "block", Menu closed: "hidden"
-                            -->
-                            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                    </div>
                 </div>
             </div>
-
-            <!-- Mobile menu, show/hide based on menu state. -->
-            <div class="md:hidden" id="mobile-menu">
-                {{--                        options items here--}}
-                <div class="pt-4 pb-3 border-t border-gray-700">
-                    <div class="flex items-center px-5">
-                        <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full"
-                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                 alt="">
-                        </div>
-                        <div class="ml-3">
-                            <div class="text-base font-medium leading-none text-gray-900">Tom Cook</div>
-                            <div class="text-sm font-medium leading-none text-gray-600">tom@example.com</div>
-                        </div>
-                        <button
-                            class="ml-auto flex-shrink-0 p-1 rounded-full text-gray-800 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-gray-800">
-                            <span class="sr-only">View notifications</span>
-                            <!-- Heroicon name: outline/bell -->
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="mt-3 px-2 space-y-1">
-                        <a href="#"
-                           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-300">
-                            Mi perfil
-                        </a>
-
-                        <a href="#"
-                           class="block px-3 py-2 rounded-md text-base font-medium text-red-500 hover:text-red-900 hover:bg-red-100">
-                            Cerrar Sesión
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        </div>
     </div>
-</div>
+</nav>
