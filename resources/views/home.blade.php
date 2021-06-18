@@ -1,9 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <x-heads.head>
         Inicio
     </x-heads.head>
+
+    {{--    CSS que se usara solo en esta vista--}}
+
+    {{--    JS que se usara solo en esta vista--}}
+
     @livewireStyles
 </head>
 

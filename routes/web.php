@@ -20,15 +20,11 @@ Route::get('/', function () {
     //return redirect()->route('login');
 })->name('inicio');
 
-Route::get('login', LoginController::class)->name('login');
+/* Login */
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'login'])->name('log-in');
 
 /* Contratos */
 Route::get('contratos', [ContractController::class, 'index'])->name('contratos');
 Route::get('contratos/crear', [ContractController::class, 'create'])->name('contratos.crear');
 Route::get('contratos/{id}', [ContractController::class, 'show'])->name('contratos.mostrar');
-
-
-
-//Route::post('/contratos/nuevo', function () {
-//    return request();
-//})->name('contratos.nuevo');
