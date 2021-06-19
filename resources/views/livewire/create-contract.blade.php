@@ -23,9 +23,9 @@
                                            class="input-form w-full" wire:model="name" autofocus>
                                 </div>
                                 @error('name')
-                                <x-alerts.danger>
-                                    <strong>Whoops!</strong> Es necesario colocar la denominación del contrato.
-                                </x-alerts.danger>
+                                <span class="text-red-500 text-xs">
+                                    Es necesario colocar la denominación del contrato.
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -40,10 +40,10 @@
                                 </textarea>
                             </div>
                             @error('description')
-                            <x-alerts.danger>
-                                <strong>Whoops!</strong> Es necesario colocar una breve descripción acerca del contrato
+                            <span class="text-red-500 text-xs">
+                                Es necesario colocar una breve descripción acerca del contrato
                                 (menos de 1000 caracteres).
-                            </x-alerts.danger>
+                            </span>
                             @enderror
                         </div>
                         <div>
@@ -57,9 +57,9 @@
                                            max="99999999.99">
                                 </div>
                                 @error('price')
-                                <x-alerts.danger>
-                                    <strong>Whoops!</strong> Es necesario especificar la cotización del contrato.
-                                </x-alerts.danger>
+                                <span class="text-red-500 text-xs">
+                                    Es necesario especificar la cotización del contrato.
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -73,10 +73,9 @@
                                            wire:model="due_date_at" class="input-form w-full">
                                 </div>
                                 @error('due_date_at')
-                                <x-alerts.danger>
-                                    <strong>Whoops!</strong> Es necesario especificar la fecha hasta cuando debe
-                                    verificarse.
-                                </x-alerts.danger>
+                                <span class="text-red-500 text-xs">
+                                    Es necesario especificar la fecha hasta cuando debe verificarse.
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -98,9 +97,9 @@
                                 </select>
                             </div>
                             @error('line_id')
-                            <x-alerts.danger>
-                                <strong>Whoops!</strong> Es necesario indicar el tipo de giro.
-                            </x-alerts.danger>
+                            <span class="text-red-500 text-xs">
+                                Es necesario indicar el tipo de giro.
+                            </span>
                             @enderror
                         </div>
                         <div>
@@ -111,10 +110,9 @@
                                 <input type="file" wire:model="document" id="document"
                                        class="input-form w-full cursor-pointer border-1 border-gray-400 border-dashed rounded-md text-sm  py-4">
                                 @error('document')
-                                <x-alerts.danger>
-                                    <strong>Whoops!</strong> Es necesario adjuntar el documento de especificación del
-                                    contrato.
-                                </x-alerts.danger>
+                                <span class="text-red-500 text-xs">
+                                    Es necesario adjuntar el documento de especificación del contrato.
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -156,12 +154,34 @@
                         </div>
                     </div>
                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <button type="submit"
-                                class="btn-primary">
-                            Guardar contrato
-                        </button>
+                        <div x-data="{close:false}">
+                            <button type="submit" x-on:click="{close = false}"
+                                    class="btn-primary">
+                                Guardar contrato
+                            </button>
+                            @if(strlen($response) > 0)
+                                <x-alerts.info>
+                                    @slot('title')
+                                        La información se guardó con exito
+                                    @endslot
+                                    <div class="flex items-center justify-between my-2">
+                                        <span x-on:click="{close = true}"
+                                              class="cursor-pointer bg-green-100 px-3 py-1 rounded-lg hover:bg-green-200">
+                                            Continuar aqui
+                                        </span>
+                                        <a href="{{ route('contratos') }}"
+                                           class="bg-green-100 px-3 py-1 rounded-lg hover:bg-green-200">
+                                            Ver todos
+                                        </a>
+                                        <a href="{{route('contratos.mostrar', $response)}}"
+                                           class="bg-green-100 px-3 py-1 rounded-lg hover:bg-green-200">
+                                            Ver este
+                                        </a>
+                                    </div>
+                                </x-alerts.info>
+                            @endif
+                        </div>
                     </div>
-
                 </div>
             </form>
         </div>

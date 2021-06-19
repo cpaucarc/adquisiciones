@@ -35,8 +35,24 @@ class DocumentStatusSeeder extends Seeder
         $st4->save();
 
         $st5 = new DocumentStatus();
-        $st5->name = "En espera";
+        $st5->name = "Firmado";
         $st5->save();
+
+        $st6 = new DocumentStatus();
+        $st6->name = "Falta V°B°";
+        $st6->save();
+
+        $st7 = new DocumentStatus();
+        $st7->name = "Falta Conformidad";
+        $st7->save();
+
+        $st8 = new DocumentStatus();
+        $st8->name = "Requiere 1° Convocatoria";
+        $st8->save();
+
+        $st9 = new DocumentStatus();
+        $st9->name = "Requiere 2° Convocatoria";
+        $st9->save();
 
     }
 }

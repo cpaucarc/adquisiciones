@@ -34,12 +34,18 @@
                         <label for="username" class="tracking-wide block text-sm font-medium text-gray-700">
                             Nombre de usuario
                         </label>
-                        <input type="text" name="username" id="username"
+                        <input type="text" name="username" id="username" required
                                class="input-form w-full"
-                               @error('username')
+                               @error('oldUsername')
                                value="{{ $message }}"
                                @enderror
                                autofocus>
+
+                        @error('username')
+                        <span class="text-xs text-red-500">
+                            {{ $message }}"
+                        </span>
+                        @enderror
                     </div>
 
                     <div class="col-span-6 my-2">
@@ -47,11 +53,16 @@
                             Contraseña
                         </label>
                         <input type="password" name="password" id="password"
-                               class="input-form w-full">
+                               class="input-form w-full" required>
+                        @error('password')
+                        <span class="text-xs text-red-500">
+                            {{ $message }}"
+                        </span
+                        @enderror
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between my-2">
                     <div class="flex items-center">
                         <input id="remember_me" name="remember_me" type="checkbox"
                                class="h-5 w-5 text-indigo-600 hover:ring-indigo-500 border-gray-300 rounded">
@@ -67,7 +78,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="mt-4">
                     <button type="submit"
                             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                           <span class="absolute left-0 inset-y-0 flex items-center pl-3">

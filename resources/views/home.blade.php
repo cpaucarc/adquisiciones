@@ -25,6 +25,30 @@
         Se debe de crear una vista principal para cada tipo de usuario (por cada oficina)
     </p>
 
+    @if(session('status'))
+        {{ session('status') }}
+    @else
+        No hay session
+    @endif
+
+
+    @if(\Illuminate\Support\Facades\Auth::check())
+        Hay un usuario loggeado
+    @else
+        No hay usuario loggeado
+    @endif
+
+    @if(\Illuminate\Support\Facades\Auth::check())
+        {{--        @if(\Illuminate\Support\Facades\Auth::user()->username=='shopmanager')--}}
+        {{--            @extends('theme::Admins.shopmanager.layout.master')--}}
+        {{--        @else--}}
+        {{--            @extends('theme::Admins.shopowner.layout.master')--}}
+        {{--        @endif--}}
+        {{ \Illuminate\Support\Facades\Auth::user()->person->name }}
+        {{ \Illuminate\Support\Facades\Auth::user()->person->lastname }}
+    @endif
+
+
 </div>
 
 <div>

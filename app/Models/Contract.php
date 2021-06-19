@@ -16,4 +16,20 @@ class Contract extends Model
     protected $hidden = [
         'accepted_at', 'created_at', 'updated_at',
     ];
+
+    public function status()
+    {
+        return $this->hasOne('App\Models\ContractStatus', 'id', 'contract_status_id');
+    }
+
+    public function line()
+    {
+        return $this->hasOne('App\Models\Line', 'id', 'line_id');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany('App\Models\Document')->orderBy('created_at');
+    }
+
 }
