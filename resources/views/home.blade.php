@@ -1,9 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <x-heads.head>
         Inicio
     </x-heads.head>
+
+    {{--    CSS que se usara solo en esta vista--}}
+
+    {{--    JS que se usara solo en esta vista--}}
+
     @livewireStyles
 </head>
 
@@ -18,6 +24,30 @@
     <p class="mt-8">
         Se debe de crear una vista principal para cada tipo de usuario (por cada oficina)
     </p>
+
+    @if(session('status'))
+        {{ session('status') }}
+    @else
+        No hay session
+    @endif
+
+
+    @if(\Illuminate\Support\Facades\Auth::check())
+        Hay un usuario loggeado
+    @else
+        No hay usuario loggeado
+    @endif
+
+    @if(\Illuminate\Support\Facades\Auth::check())
+        {{--        @if(\Illuminate\Support\Facades\Auth::user()->username=='shopmanager')--}}
+        {{--            @extends('theme::Admins.shopmanager.layout.master')--}}
+        {{--        @else--}}
+        {{--            @extends('theme::Admins.shopowner.layout.master')--}}
+        {{--        @endif--}}
+        {{ \Illuminate\Support\Facades\Auth::user()->person->name }}
+        {{ \Illuminate\Support\Facades\Auth::user()->person->lastname }}
+    @endif
+
 
 </div>
 

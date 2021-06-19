@@ -7,7 +7,7 @@
     </x-heads.head>
     @livewireStyles
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100  relative">
 
 <div>
     @livewire('navbar')

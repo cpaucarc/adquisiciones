@@ -14,6 +14,12 @@ class CreateOffice extends Component
         'execution_days' => 'required',
     ];
 
+    protected $listeners = [
+        'showMessage'
+    ];
+
+    public $info;
+
     public function save()
     {
         $this->validate();
@@ -23,9 +29,17 @@ class CreateOffice extends Component
         $off->execution_days = $this->execution_days;
         $off->save();
 
+        $this->emit('showM');
+
 //        return redirect()->to('/');
     }
 
+    public function showMessage()
+    {
+//        dd($message1, $message2);
+//        session()->flash('message', 'Post successfully updated.');
+        $this->info = "Mensage " . rand(0, 78);
+    }
 
     public function render()
     {

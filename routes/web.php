@@ -18,17 +18,24 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
     return view('home');
     //return redirect()->route('login');
-})->name('inicio');
+})->name('inicio')->middleware(['checklogged']);
 
-Route::get('login', LoginController::class)->name('login');
+Route::get('test', function () {
+    return view('testview');
+    //return redirect()->route('login');
+})->name('test');
+
+/* Login */
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'login'])->name('log-in');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 /* Contratos */
 Route::get('contratos', [ContractController::class, 'index'])->name('contratos');
 Route::get('contratos/crear', [ContractController::class, 'create'])->name('contratos.crear');
 Route::get('contratos/{id}', [ContractController::class, 'show'])->name('contratos.mostrar');
 
-
-
-//Route::post('/contratos/nuevo', function () {
-//    return request();
-//})->name('contratos.nuevo');
+/* Files */
+Route::get('storage/{file}', function ($file) {
+    return Storage::response($file);
+})->name('file');
