@@ -1,48 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
+@extends('layout.layout')
 
-    <x-heads.head>
-        Crear nuevo contrato
-    </x-heads.head>
-    @livewireStyles
-</head>
-<body class="bg-gray-100  relative">
+@section('title', 'Crear nuevo contrato')
 
-<div>
-    @livewire('navbar')
-</div>
+@section('content')
 
-<div class="container mx-auto w-8/12 py-8">
-    {{--    <x-alerts.danger>--}}
-    {{--        <x-slot name="title">--}}
-    {{--            Server Error--}}
-    {{--        </x-slot>--}}
-    {{--        <strong>Whoops!</strong> Something went wrong!--}}
-    {{--    </x-alerts.danger>--}}
-
-    {{--    <x-alerts.success>--}}
-    {{--        <x-slot name="title">--}}
-    {{--            Exito--}}
-    {{--        </x-slot>--}}
-    {{--        <strong>Whoops!</strong> Something went wrong!--}}
-    {{--    </x-alerts.success>--}}
-
-    {{--    <x-alerts.warning>--}}
-    {{--        <x-slot name="title">--}}
-    {{--            Cuidado--}}
-    {{--        </x-slot>--}}
-    {{--        <strong>Whoops!</strong> Something went wrong!--}}
-    {{--    </x-alerts.warning>--}}
-
-    <div>
-        @livewire('create-contract')
+    <div class="px-3">
+        @livewire('contract.new-contract')
     </div>
 
-</div>
-
-</body>
-
-@livewireScripts
-
-</html>
+@endsection

@@ -1,18 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <x-heads.head>
-        Contratos
-    </x-heads.head>
+@extends('layout.layout')
 
-    @livewireStyles
-</head>
-<body class="bg-gray-100 h-screen">
-<div>
-    @livewire('navbar')
-</div>
+@section('title', 'Contratos')
 
-<div class="container mx-auto w-10/12 py-10">
+@section('content')
     <div>
         <a href="{{route('contratos.crear')}}" class="btn-primary">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -29,12 +19,4 @@
     <div class="my-8">
         @livewire('contract.list-contracts')
     </div>
-
-</div>
-
-
-</body>
-
-@livewireScripts
-
-</html>
+@endsection

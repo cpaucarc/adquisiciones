@@ -1,25 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
+@extends('layout.layout')
 
-    <x-heads.head>
-        Inicio
-    </x-heads.head>
+@section('title', 'Inicio')
 
-    {{--    CSS que se usara solo en esta vista--}}
+@section('content')
 
-    {{--    JS que se usara solo en esta vista--}}
-
-    @livewireStyles
-</head>
-
-<body class="bg-gray-100">
-
-<div>
-    @livewire('navbar')
-</div>
-
-<div class="container mx-auto w-10/12 pt-8">
     <h1>Este es el Home</h1>
     <p class="mt-8">
         Se debe de crear una vista principal para cada tipo de usuario (por cada oficina)
@@ -31,7 +15,6 @@
         No hay session
     @endif
 
-
     @if(\Illuminate\Support\Facades\Auth::check())
         Hay un usuario loggeado
     @else
@@ -39,23 +22,14 @@
     @endif
 
     @if(\Illuminate\Support\Facades\Auth::check())
-        {{--        @if(\Illuminate\Support\Facades\Auth::user()->username=='shopmanager')--}}
-        {{--            @extends('theme::Admins.shopmanager.layout.master')--}}
-        {{--        @else--}}
-        {{--            @extends('theme::Admins.shopowner.layout.master')--}}
-        {{--        @endif--}}
         {{ \Illuminate\Support\Facades\Auth::user()->person->name }}
         {{ \Illuminate\Support\Facades\Auth::user()->person->lastname }}
     @endif
 
-
-</div>
-
-<div>
-    @livewire('footer')
-</div>
-
-
-</body>
-@livewireScripts
-</html>
+    <h5>
+        Oficina:
+        @if(\Illuminate\Support\Facades\Auth::check())
+            {{ \Illuminate\Support\Facades\Auth::user()->office_id }}
+        @endif
+    </h5>
+@endsection

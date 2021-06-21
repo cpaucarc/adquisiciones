@@ -1,21 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
+@extends('layout.layout-no-navbar')
 
-    <x-heads.head>
-        Inicio
-    </x-heads.head>
+@section('title', 'Iniciar Sesion')
 
-    {{--    CSS que se usara solo en esta vista--}}
+@section('content')
 
-    {{--    JS que se usara solo en esta vista--}}
-
-    @livewireStyles
-</head>
-
-<body class="bg-gray-100">
-
-<div class="container mx-auto w-10/12">
     <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-6">
             <div>
@@ -29,7 +17,6 @@
                 @csrf
                 <input type="hidden" name="remember" value="true">
                 <div class="rounded-md shadow-sm -space-y-px">
-
                     <div class="col-span-6 my-2">
                         <label for="username" class="tracking-wide block text-sm font-medium text-gray-700">
                             Nombre de usuario
@@ -106,10 +93,4 @@
         </div>
     </div>
 
-
-</div>
-
-
-</body>
-@livewireScripts
-</html>
+@endsection

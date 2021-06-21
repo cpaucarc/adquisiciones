@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Contract;
 
 use App\Models\Arrival;
 use App\Models\Contract;
 use App\Models\Document;
 use App\Models\Line;
 use App\Models\LogContractStatus;
-use App\Models\LogDocumentStatus;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class CreateContract extends Component
+class NewContract extends Component
 {
-
     use WithFileUploads;
 
     public $name, $description, $price, $line_id, $due_date_at;
@@ -154,6 +152,6 @@ class CreateContract extends Component
 
     public function render()
     {
-        return view('livewire.create-contract');
+        return view('livewire.contract.new-contract');
     }
 }

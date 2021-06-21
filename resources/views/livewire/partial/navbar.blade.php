@@ -18,38 +18,28 @@
                 <div class="ml-4 flex items-center md:ml-6">
                     <!-- Profile dropdown -->
                     <div class="ml-3 relative mt-1">
-                        <div class="cursor-pointer text-gray-700" x-on:click="{openDropdown = !openDropdown}">
-                            <svg class="h-10 w-10 " viewBox="0 0 20 20"
-                                 fill="currentColor">
-                                <path fill-rule="evenodd"
-                                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                                      clip-rule="evenodd"/>
-                            </svg>
+                        <div
+                            class="h-10 w-10 rounded-full bg-pink-600 hover:bg-pink-700 rounded-full flex items-center text-center align-middle focus:outline-none cursor-pointer text-white"
+                            x-on:click="{openDropdown = !openDropdown}">
+                            <span
+                                class="text-xl text-center w-full">
+                                {{ $firstLetter }}
+                            </span>
                         </div>
 
                         <div x-show="openDropdown" x-on:click.away="{openDropdown = false}"
-                             class="divide-y divide-gray-100 origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             class="divide-y divide-gray-100 origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg py-1 bg-white ring ring-black ring-opacity-5 focus:outline-none"
                              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                              tabindex="-1">
 
                             <div class="py-1" role="none">
                                 <span class="block px-4 py-2 text-sm text-gray-700 tracking-wide font-bold"
                                       role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                    @if(\Illuminate\Support\Facades\Auth::check())
-                                        {{ \Illuminate\Support\Facades\Auth::user()->person->name }}
-                                        {{ \Illuminate\Support\Facades\Auth::user()->person->lastname }}
-                                    @else
-                                        Usuario No Loggeado
-                                    @endif
+                                    {{ $userLogged }}
                                 </span>
                                 <span class="block pl-4 pr-0 py-0 mb-2 text-xs text-gray-400"
                                       role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                    @if(\Illuminate\Support\Facades\Auth::check())
-                                        {{ \Illuminate\Support\Facades\Auth::user()->office->name }}
-                                        {{ \Illuminate\Support\Facades\Auth::user()->office->office }}
-                                    @else
-                                        Oficina No Identificado
-                                    @endif
+                                    {{ $officeLogged }}
                                 </span>
                             </div>
 
@@ -134,5 +124,4 @@
             </div>
         </div>
     </div>
-
 </nav>

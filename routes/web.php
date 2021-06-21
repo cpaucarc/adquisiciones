@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,15 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-    //return redirect()->route('login');
-})->name('inicio')->middleware(['checklogged']);
+/* [Home] Perfiles segun oficina */
+//Route::get('/', function () {
+//    return view('profiles.und-alm-cnt');
+//    //return redirect()->route('login');
+//})->name('inicio')->middleware(['checklogged']);
+Route::get('/', [ProfileController::class, 'index'])->name('inicio');
 
 Route::get('test', function () {
     return view('testview');
-    //return redirect()->route('login');
 })->name('test');
 
 /* Login */

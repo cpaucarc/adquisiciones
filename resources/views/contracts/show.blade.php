@@ -1,17 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <x-heads.head>
-        Contratos
-    </x-heads.head>
-    @livewireStyles
-</head>
-<body class="bg-gray-100">
-<div>
-    @livewire('navbar')
-</div>
+@extends('layout.layout')
 
-<div class="container mx-auto w-10/12 py-10">
+@section('title', "Contrato $contract->id")
+
+@section('content')
 
     <a href="{{ route('contratos') }}" class="mb-4 btn-secondary">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,20 +178,9 @@
                             </dd>
                         </div>
                     @endforeach
-
-
                 </dl>
             </div>
         </div>
-
     </div>
-</div>
 
-
-</body>
-
-@livewireScripts
-
-</html>
-
-
+@endsection
