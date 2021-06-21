@@ -12,7 +12,7 @@
     @livewire('navbar')
 </div>
 
-<div class="container mx-auto w-10/12 pt-10">
+<div class="container mx-auto w-10/12 py-10">
     <div>
         <a href="{{route('contratos.crear')}}" class="btn-primary">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -26,15 +26,10 @@
         </a>
     </div>
 
-    <div class="mt-8">
+    <div class="my-8">
         @livewire('contract.list-contracts')
     </div>
 
-</div>
-
-
-<div>
-    @livewire('footer')
 </div>
 
 

@@ -4,6 +4,18 @@
             <input type="text" class="input-form w-full"
                    placeholder="Escribe para buscar" wire:model="search">
         </div>
+        <div class="flex items-center text-gray-700">
+            <span>Mostrar:</span>
+            <select class="input-form mx-2" wire:model="cant">
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <span>Contratos</span>
+        </div>
     </div>
 
     <div class="mt-4">
@@ -12,14 +24,14 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" wire:click="sortBy('ct.name')"
+                        <th scope="col" wire:click="sortBy('name')"
                             class="cursor-pointer pl-6 pr-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <div class="flex items-center justify-between ">
                                 <span>
                                     Contrato
                                 </span>
                                 <span class="mt-1 text-gray-400">
-                                    @if($sort === 'ct.name')
+                                    @if($sort === 'name')
                                         @if($direction === 'asc')
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,14 +47,14 @@
                                 </span>
                             </div>
                         </th>
-                        <th scope="col" wire:click="sortBy('ct.price')"
+                        <th scope="col" wire:click="sortBy('price')"
                             class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <div class="flex items-center justify-between">
                                 <span>
                                 Cotización
                                 </span>
                                 <span class="mt-1 text-gray-400">
-                                @if($sort === 'ct.price')
+                                @if($sort === 'price')
                                         @if($direction === 'asc')
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -58,7 +70,7 @@
                                 </span>
                             </div>
                         </th>
-                        <th scope="col" wire:click="sortBy('ln.name')"
+                        <th scope="col" wire:click="sortBy('line')"
                             class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <div class="flex items-center justify-between ">
                                 <span class="flex items-center">
@@ -66,7 +78,7 @@
                                     <span>Giro</span>
                                 </span>
                                 <span class="mt-1 text-gray-400">
-                                    @if($sort === 'ln.name')
+                                    @if($sort === 'line')
                                         @if($direction === 'asc')
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -82,14 +94,14 @@
                                 </span>
                             </div>
                         </th>
-                        <th scope="col" wire:click="sortBy('ct.created_at')"
+                        <th scope="col" wire:click="sortBy('created_at')"
                             class="cursor-pointer hidden lg:block px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <div class="flex items-center justify-between ">
                                 <span>
                                     Fecha de Creación
                                 </span>
                                 <span class="mt-1 text-gray-400">
-                                    @if($sort === 'ct.created_at')
+                                    @if($sort === 'created_at')
                                         @if($direction === 'asc')
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -105,14 +117,14 @@
                                 </span>
                             </div>
                         </th>
-                        <th scope="col" wire:click="sortBy('ctst.name')"
+                        <th scope="col" wire:click="sortBy('status')"
                             class="cursor-pointer px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <div class="flex items-center justify-between ">
                                 <span>
                                     Estado
                                 </span>
                                 <span class="mt-1 text-gray-400">
-                                    @if($sort === 'ctst.name')
+                                    @if($sort === 'status')
                                         @if($direction === 'asc')
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -140,16 +152,16 @@
                             <td class="pl-6 pr-4 py-2 whitespace-nowrap">
                                 <div class="text-sm text-gray-600 font-medium tracking-wide">
                                     @if(strlen($contract->name) >= 40)
-                                        {{substr($contract->name, 0, 40)}}...
+                                        {{substr($contract->name, 0, 25)}}...{{substr($contract->name, -15)}}
                                     @else
-                                        {{substr($contract->name, 0, 40)}}
+                                        {{ $contract->name }}
                                     @endif
                                 </div>
                                 <div class="text-xs text-gray-400">
                                     @if(strlen($contract->description) >= 50)
                                         {{substr($contract->description, 0, 50)}}...
                                     @else
-                                        {{substr($contract->description, 0, 50)}}
+                                        {{ $contract->description }}
                                     @endif
                                 </div>
                             </td>
@@ -164,7 +176,7 @@
                                     {{ $contract->line  }}
                                 </div>
                             </td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 hidden lg:block">
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 hidden lg:block">
                                 {{ $contract->created_at  }}
                             </td>
                             <td class="px-4 py-2 whitespace-nowrap">
@@ -204,5 +216,13 @@
                 </span>
             </div>
         @endif
+
+        @if( $contracts->hasPages() )
+            <div class="px-6 py-3">
+                {{ $contracts->links() }}
+            </div>
+        @endif
+
+
     </div>
 </div>

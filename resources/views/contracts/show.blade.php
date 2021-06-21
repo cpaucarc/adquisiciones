@@ -64,32 +64,29 @@
                             {{ $contract->line->name }}
                         </dd>
                     </div>
-                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-400">
-                            Estado actual
+                            Estado General
                         </dt>
                         <dd class="mt-1 text-sm text-gray-700 sm:mt-0 sm:col-span-2">
                             <span
-                                class="px-4 py-1 rounded-lg bg-{{ $contract->status->color }}-200 text-{{ $contract->status->color }}-900">
+                                class="px-4 py-1 rounded-lg tracking-wider bg-{{ $contract->status->color }}-200 text-{{ $contract->status->color }}-900">
                                 {{ $contract->status->name }}
                             </span>
                         </dd>
                     </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-400">
                             Descripción
                         </dt>
                         <dd class="mt-1 text-sm text-gray-700 sm:mt-0 sm:col-span-2">
-
                             <div x-data="{ open:false }">
-
                                 <div x-show="!open">
                                     {{ substr($contract->description, 0, 165) }}...
                                 </div>
                                 <div x-show="open">
                                     {{ $contract->description }}
                                 </div>
-
                                 <div class="text-right w-full font-medium">
                                     <button x-show="!open" x-on:click="{open = !open}"
                                             class="py-2 focus:outline-none text-gray-400 hover:text-gray-700 hover:underline">
@@ -109,7 +106,7 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-lg col-span-7">
             <div class="px-4 py-5 sm:px-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-700">
-                    Documentos adjuntos
+                    Seguimiento del contrato
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-400">
                     Personal details and application.
@@ -117,58 +114,74 @@
             </div>
             <div class="border-t border-gray-200">
                 <dl>
-                    @foreach( $contract->documents as $document)
-
-                        <div class="border-b px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6 flex items-center">
-                            <dt class="text-sm font-medium text-gray-500">
-                                <span class="flex items-center mb-2">
+                    @foreach( $contract->logs as $log)
+                        <div class="border-b px-4 py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6 flex items-center">
+                            <dt class="text-sm font-medium text-gray-500 tracking-wide">
+                                <span class="flex items-center">
                                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    {{ date("h:ia", strtotime($document->created_at)) }}
+                                    {{ date("h:i A", strtotime($log->created_at)) }}
                                 </span>
-                                <span class="flex items-center mb-2">
+                                <span class="flex items-center mt-2">
                                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
-                                    {{ date("d-m-Y", strtotime($document->created_at)) }}
+                                    {{ date("d-m-Y", strtotime($log->created_at)) }}
                                 </span>
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3">
-                                <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                <ul class="divide-y divide-gray-200">
+                                    <li class="py-3 flex items-center justify-between text-sm">
                                         <div class="w-0 flex-1 flex items-center">
-                                            <!-- Heroicon name: solid/paper-clip -->
-                                            <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
-                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd"
-                                                      d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                                      clip-rule="evenodd"/>
-                                            </svg>
-                                            <span class="ml-2 flex-1 w-0 truncate">
-                                                @if(strlen($document->name) > 45)
-                                                    {{ substr($document->name,0, 30) }}
-                                                    ...{{ substr($document->name, -10) }}
-                                                @else
-                                                    {{ $document->name  }}
-                                                @endif
+                                             <span class="ml-2 py-2 flex-1 w-0 truncate">
+                                                <span class="flex items-center mb-2 text-xs text-gray-400">
+                                                    <span class="font-medium mr-1">
+                                                        Origen:
+                                                    </span>
+                                                    {{ $log->arrival->originOffice->office }}
+                                                    @if($log->status === 0)
+                                                        <span
+                                                            class="ml-2 rounded-lg px-2 py-1 text-xs bg-yellow-100 text-yellow-700">
+                                                            {{ $log->statusContract->name }}
+                                                        </span>
+                                                    @endif
+                                                </span>
+                                                <span class="flex items-center mb-2 text-gray-600">
+                                                    <div class="transform rotate-180 mr-2">
+                                                        <svg class="h-4 w-4 mr-2" fill="none"
+                                                             viewBox="0 0 24 24"
+                                                             stroke="currentColor">
+                                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="1"
+                                                                d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="font-medium mr-1">
+                                                        Destino:
+                                                    </span>
+                                                    {{ $log->arrival->destinationOffice->office }}
+                                                </span>
                                             </span>
                                         </div>
-                                        <div class="ml-4 flex-shrink-0">
-                                            <a href="{{ route('file', explode('/', $document->link)[1]) }}"
-                                               target="_blank"
-                                               class="font-medium text-gray-600 hover:text-indigo-600 flex items-center">
-                                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                                     stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="1.5"
-                                                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                                </svg>
-                                                Descargar
-                                            </a>
-                                        </div>
+
+                                        @if($log->document)
+                                            <div class="ml-4 flex-shrink-0">
+                                                <a href="{{ route('file', $log->document->name) }}"
+                                                   target="_blank"
+                                                   class="font-medium text-gray-600 hover:text-indigo-600 flex items-center">
+                                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                                         stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="1.5"
+                                                              d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                                    </svg>
+                                                    Revisar
+                                                </a>
+                                            </div>
+                                        @endif
                                     </li>
                                 </ul>
                             </dd>

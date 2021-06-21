@@ -39,6 +39,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $timestamps = true;
+
     public function person()
     {
         return $this->hasOne('App\Models\Person', 'id', 'person_id');

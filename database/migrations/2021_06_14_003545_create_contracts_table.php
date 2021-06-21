@@ -22,11 +22,13 @@ class CreateContractsTable extends Migration
             $table->date('due_date_at')->nullable();
             $table->time('due_time_at');
             $table->timestamp('accepted_at')->nullable();
+
             $table->unsignedBigInteger('line_id');
-            $table->unsignedBigInteger('contract_status_id');
+            $table->unsignedBigInteger('contract_status_id')->default(13); //13:En espera
 
             $table->foreign('line_id')->references('id')->on('lines');
             $table->foreign('contract_status_id')->references('id')->on('contract_statuses');
+
             $table->timestamps();
         });
     }

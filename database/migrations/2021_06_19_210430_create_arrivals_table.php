@@ -17,12 +17,13 @@ class CreateArrivalsTable extends Migration
             $table->id();
 
             $table->timestamp('arrival_date')->useCurrent();
+            $table->text('feedback')->nullable();
             $table->unsignedBigInteger('origin');
             $table->unsignedBigInteger('destination');
-            $table->unsignedBigInteger('document_id');
+            $table->unsignedBigInteger('log_contract_status_id');
             $table->unsignedBigInteger('attention_status_id');
 
-            $table->foreign('document_id')->references('id')->on('documents');
+            $table->foreign('log_contract_status_id')->references('id')->on('log_contract_statuses');
             $table->foreign('attention_status_id')->references('id')->on('attention_statuses');
             $table->timestamps();
         });

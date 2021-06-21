@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
         $this->call(OfficeSeeder::class);
         $this->call(AttentionStatusSeeder::class);
         $this->call(ContractStatusSeeder::class);
-        $this->call(DocumentStatusSeeder::class);
     }
 }
