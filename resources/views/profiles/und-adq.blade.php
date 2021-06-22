@@ -16,4 +16,6 @@
         </p>
     </div>
 
+    @livewire('profiles.und-adq')
+
 @endsection

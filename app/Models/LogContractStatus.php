@@ -28,4 +28,10 @@ class LogContractStatus extends Model
         return $this->hasOne('App\Models\Arrival', 'log_contract_status_id', 'id');
     }
 
+    public function contract()
+    {
+        return $this->hasOne('App\Models\Contract', 'id', 'contract_id');
+//        return $this->hasOne('App\Models\Contract', 'contract_id', 'id');
+    }
+
 }
