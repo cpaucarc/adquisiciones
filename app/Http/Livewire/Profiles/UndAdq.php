@@ -24,16 +24,19 @@ class UndAdq extends Component
 //                    ->where('status', 0);
 //            })->get();
 
-        $logs = DB::table('log_contract_statuses')
-            ->whereIn('id', function ($query) {
-                $query->select('log_contract_status_id')
-                    ->from(with(new Arrival)->getTable())
-                    ->where('destination', 2);
-            })
-            ->where('status', 0)
-            ->get();
+//        $logs = DB::table('log_contract_statuses')
+//            ->whereIn('id', function ($query) {
+//                $query->select('log_contract_status_id')
+//                    ->from(with(new Arrival)->getTable())
+//                    ->where('destination', 2);
+//            })
+//            ->where('status', 0)
+//            ->get();
 
-        return view('livewire.profiles.und-adq')
-            ->with(compact('logs'));
+
+//        return view('livewire.profiles.und-adq')
+//            ->with(compact('logs'));
+
+        return view('home');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttentionStatusesTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAttentionStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attention_statuses', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-
             $table->string('name', 45);
-            $table->tinyInteger('percent');
+            $table->string('color', 10)->default('indigo');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAttentionStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attention_statuses');
+        Schema::dropIfExists('statuses');
     }
 }

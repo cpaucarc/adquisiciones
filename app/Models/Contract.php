@@ -12,7 +12,10 @@ class Contract extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name', 'description', 'price', 'due_date_at', 'due_time_at', 'line_id', 'contract_status_id',
+        'name', 'description', 'price',
+        'due_date_at', 'due_time_at',
+        'origin', 'destination',
+        'line_id', 'status_id',
     ];
 
     protected $hidden = [
@@ -24,15 +27,15 @@ class Contract extends Model
         return $this->hasOne('App\Models\Line', 'id', 'line_id');
     }
 
-    public function logs()
+    public function arrivals()
     {
-        return $this->hasMany('App\Models\LogContractStatus')
+        return $this->hasMany('App\Models\Arrival')
             ->orderBy('created_at', 'asc');
     }
 
     public function status()
     {
-        return $this->hasOne('App\Models\ContractStatus', 'id', 'contract_status_id');
+        return $this->hasOne('App\Models\Status', 'id', 'status_id');
     }
 
 }

@@ -73,7 +73,7 @@
                         <dd class="mt-1 text-sm text-gray-700 sm:mt-0 sm:col-span-2">
                             <div x-data="{ open:false }">
                                 <div x-show="!open">
-                                    {{ substr($contract->description, 0, 165) }}...
+                                    {{ substr($contract->description, 0, 115) }}...
                                 </div>
                                 <div x-show="open">
                                     {{ $contract->description }}
@@ -105,42 +105,45 @@
             </div>
             <div class="border-t border-gray-200">
                 <dl>
-                    @foreach( $contract->logs as $log)
+                    @foreach( $contract->arrivals as $arrival)
                         <div class="border-b px-4 py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6 flex items-center">
-                            <dt class="text-sm font-medium text-gray-500 tracking-wide">
+                            <dt class="text-sm text-gray-500">
                                 <span class="flex items-center">
                                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    {{ date("h:i A", strtotime($log->created_at)) }}
+                                    {{ date("h:i A", strtotime($arrival->created_at)) }}
                                 </span>
                                 <span class="flex items-center mt-2">
                                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
-                                    {{ date("d-m-Y", strtotime($log->created_at)) }}
+                                    {{ date("d-m-Y", strtotime($arrival->created_at)) }}
                                 </span>
                             </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3">
+                            <dd class="text-sm text-gray-800 -ml-8 sm:col-span-3">
                                 <ul class="divide-y divide-gray-200">
-                                    <li class="py-3 flex items-center justify-between text-sm">
+                                    <li class="flex items-center justify-between text-sm">
                                         <div class="w-0 flex-1 flex items-center">
-                                             <span class="ml-2 py-2 flex-1 w-0 truncate">
-                                                <span class="flex items-center mb-2 text-xs text-gray-400">
-                                                    <span class="font-medium mr-1">
-                                                        Origen:
-                                                    </span>
-                                                    {{ $log->arrival->originOffice->office }}
-                                                    @if($log->status === 0)
+                                            <div class="ml-2 py-2 flex-1 w-0 truncate">
+                                                <div
+                                                    class="flex items-center text-xs text-gray-400 flex items-center justify-between">
+                                                    <div>
+                                                        <span class="font-medium mr-1">
+                                                            Origen:
+                                                        </span>
+                                                        {{ $arrival->originOffice->office }}
+                                                    </div>
+                                                    @if($arrival->status === 0)
                                                         <span
                                                             class="ml-2 rounded-lg px-2 py-1 text-xs bg-yellow-100 text-yellow-700">
-                                                            {{ $log->statusContract->name }}
+                                                            {{ $arrival->arrivalStatus->name }}
                                                         </span>
                                                     @endif
-                                                </span>
-                                                <span class="flex items-center mb-2 text-gray-600">
+                                                </div>
+                                                <span class="flex items-center text-gray-600">
                                                     <div class="transform rotate-180 mr-2">
                                                         <svg class="h-4 w-4 mr-2" fill="none"
                                                              viewBox="0 0 24 24"
@@ -153,14 +156,19 @@
                                                     <span class="font-medium mr-1">
                                                         Destino:
                                                     </span>
-                                                    {{ $log->arrival->destinationOffice->office }}
+                                                    {{ $arrival->destinationOffice->office }}
                                                 </span>
-                                            </span>
+                                                <div class="text-xs ">
+                                                    <p>
+                                                        {{ $arrival->feedback }}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        @if($log->document)
+                                        @if($arrival->document)
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="{{ route('file', $log->document->name) }}"
+                                                <a href="{{ route('file', $arrival->document->name) }}"
                                                    target="_blank"
                                                    class="font-medium text-gray-600 hover:text-indigo-600 flex items-center">
                                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"

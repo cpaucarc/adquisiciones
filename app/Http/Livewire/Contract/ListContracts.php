@@ -24,12 +24,12 @@ class ListContracts extends Component
     {
         $contracts = DB::table('contracts as ct')
             ->join('lines as ln', 'ln.id', '=', 'ct.line_id')
-            ->join('contract_statuses as ctst', 'ctst.id', '=', 'ct.contract_status_id')
-            ->select('ct.id', 'ct.name', 'ct.description', 'ct.price', 'ln.name as line', 'ln.abrev', 'ctst.name as status', 'ctst.color')
+            ->join('statuses as st', 'st.id', '=', 'ct.status_id')
+            ->select('ct.id', 'ct.name', 'ct.description', 'ct.price', 'ln.name as line', 'ln.abrev', 'st.name as status', 'st.color')
             ->selectRaw('date_format(ct.created_at, "%h:%i %p del %d-%m-%Y") as created_at')
             ->where('ct.name', 'like', '%' . $this->search . '%')
             ->orWhere('ln.name', 'like', '%' . $this->search . '%')
-            ->orWhere('ctst.name', 'like', '%' . $this->search . '%')
+            ->orWhere('st.name', 'like', '%' . $this->search . '%')
             ->orWhere('ct.created_at', 'like', '%' . $this->search . '%')
             ->orderBy($this->sort, $this->direction)
             ->paginate($this->cant);

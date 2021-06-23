@@ -36,7 +36,6 @@
                             <div class="mt-1">
                                 <textarea id="description" name="description" rows="3"
                                           wire:model="description" class="input-form w-full">
-
                                 </textarea>
                             </div>
                             @error('description')
@@ -126,28 +125,39 @@
                                         elija a que oficina se debe enviar este documento.
                                     </p>
                                 </div>
-                                <div class="mt-4 space-y-4">
-                                    <div class="flex items-center">
+                                <div class="mt-4 space-y-2" x-data="{ showFeedback:false }">
+                                    <div class="flex items-center mb-4">
                                         <input id="unad" name="destination" type="radio" checked
+                                               x-on:click="{ showFeedback = false }"
                                                class="active:ring-indigo-600 focus:ring-indigo-600 h-5 w-5 text-indigo-600 border-gray-300">
-                                        <label for="unad"
+                                        <label for="unad" x-on:click="{ showFeedback = false }"
                                                class="ml-3 block text-sm font-medium text-gray-700">
                                             Unidad de Adquisiciones
-                                            <span class="bg-green-100 px-3 py-1 text-xs rounded-full text-green-900">
+                                            <span
+                                                class="bg-green-100 px-3 py-1 text-xs rounded-full text-green-900 w-full">
                                                 Es conforme
                                             </span>
                                         </label>
                                     </div>
                                     <div class="flex items-center">
                                         <input id="dga" name="destination" type="radio" wire:model.defer="dga"
+                                               x-on:click="{ showFeedback = true }"
                                                class="focus:ring-indigo-600 h-5 w-5 text-indigo-600 border-gray-300">
-                                        <label for="dga"
+                                        <label for="dga" x-on:click="{ showFeedback = true }"
                                                class="ml-3 block text-sm font-medium text-gray-700">
                                             Dirección General de Administración
-                                            <span class="bg-red-100 px-3 py-1 text-xs rounded-full text-red-900">
+                                            <span class="bg-red-100 px-3 py-1 text-xs rounded-full text-red-900 w-full">
                                                 No es conforme
                                             </span>
                                         </label>
+                                    </div>
+                                    <div class="pl-12" x-show="showFeedback">
+                                        <div class="mt-1">
+                                            <textarea id="feedback" name="feedback" rows="3" class="input-form w-full"
+                                                      wire:model="feedback"
+                                                      placeholder="Coloque un mensaje del porque no es conforme">
+                                            </textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>

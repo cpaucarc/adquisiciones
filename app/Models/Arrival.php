@@ -13,8 +13,9 @@ class Arrival extends Model
         'arrival_date',
         'origin',
         'destination',
-        'log_contract_status_id',
-        'attention_status_id',
+        'contract_id',
+        'status_id',
+        'status',
         'feedback'
     ];
 
@@ -32,4 +33,15 @@ class Arrival extends Model
     {
         return $this->hasOne('App\Models\Office', 'id', 'destination');
     }
+
+    public function arrivalStatus()
+    {
+        return $this->hasOne('App\Models\Status', 'id', 'status_id');
+    }
+
+    public function document()
+    {
+        return $this->hasOne('App\Models\Document', 'arrival_id', 'id');
+    }
+
 }

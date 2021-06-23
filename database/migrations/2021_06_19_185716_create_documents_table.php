@@ -16,13 +16,12 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->string('link');
             $table->string('name');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('log_contract_status_id');
+            $table->unsignedBigInteger('arrival_id');
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('log_contract_status_id')->references('id')->on('log_contract_statuses');
+            $table->foreign('arrival_id')->references('id')->on('arrivals');
             $table->timestamps();
         });
     }

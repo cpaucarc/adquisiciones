@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(LineSeeder::class);
         $this->call(OfficeSeeder::class);
-        $this->call(AttentionStatusSeeder::class);
-        $this->call(ContractStatusSeeder::class);
+        $this->call(StatusSeeder::class);
     }
 }
